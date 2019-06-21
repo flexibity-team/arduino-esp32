@@ -60,8 +60,10 @@ public:
     void updateBaudRate(unsigned long baud);
     int available(void);
     int availableForWrite(void);
-    int peek(void);
+    int peek(size_t to);
+    int read(size_t to);
     int read(void);
+    int peek(void);
     void flush(void);
     size_t write(uint8_t);
     size_t write(const uint8_t *buffer, size_t size);
