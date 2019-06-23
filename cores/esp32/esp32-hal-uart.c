@@ -375,7 +375,7 @@ static void uart_on_apb_change(void * arg, apb_change_ev_t ev_type, uint32_t old
             }
         }
         // wait TX empty
-        //while(uart->dev->status.txfifo_cnt || uart->dev->status.st_utx_out);
+        while(uart->dev->status.txfifo_cnt || uart->dev->status.st_utx_out);
 
         if (xHigherPriorityTaskWoken) {
 			portYIELD_FROM_ISR();
