@@ -250,6 +250,13 @@ config ARDUINO_SELECTIVE_HTTPClient
     select ARDUINO_SELECTIVE_WiFiClientSecure
     default y
 
+config ARDUINO_SELECTIVE_HTTPUpdate
+    bool "Enable HTTPUpdate"
+    depends on ARDUINO_SELECTIVE_COMPILATION
+    select ARDUINO_SELECTIVE_WiFi
+    select ARDUINO_SELECTIVE_WiFiClientSecure
+    default y
+
 config ARDUINO_SELECTIVE_NetBIOS
     bool "Enable NetBIOS"
     depends on ARDUINO_SELECTIVE_COMPILATION
