@@ -53,6 +53,7 @@ class String {
         // fails, the string will be marked as invalid (i.e. "if (s)" will
         // be false).
         String(const char *cstr = "");
+        String(const char *buf, unsigned int length);
         String(const String &str);
         String(const __FlashStringHelper *str);
 #ifdef __GXX_EXPERIMENTAL_CXX0X__
@@ -109,6 +110,7 @@ class String {
         unsigned char concat(float num);
         unsigned char concat(double num);
         unsigned char concat(const __FlashStringHelper * str);
+        unsigned char concat(const char *cstr, unsigned int length);
 
         // if there's not enough memory for the concatenated value, the string
         // will be left unchanged (but this isn't signalled in any way)
@@ -275,7 +277,6 @@ class String {
         void init(void);
         void invalidate(void);
         unsigned char changeBuffer(unsigned int maxStrLen);
-        unsigned char concat(const char *cstr, unsigned int length);
 
         // copy and move
         String & copy(const char *cstr, unsigned int length);
