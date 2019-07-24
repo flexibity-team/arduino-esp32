@@ -432,11 +432,13 @@ void BLECharacteristic::handleGATTServerEvent(
 		}
 
 		case ESP_GATTS_CONNECT_EVT: {
+			m_pCallbacks->onStatus(this, BLECharacteristicCallbacks::Status::STATUS_CONNECT);
 			break;
 		}
 
 		case ESP_GATTS_DISCONNECT_EVT: {
 			m_semaphoreConfEvt.give();
+			m_pCallbacks->onStatus(this, BLECharacteristicCallbacks::Status::STATUS_DISCONNECT);
 			break;
 		}
 
@@ -697,15 +699,11 @@ void BLECharacteristic::setValue(int& data32) {
 } // setValue
 
 void BLECharacteristic::setValue(float& data32) {
-	uint8_t temp[4];
-	*((float*)temp) = data32;
-	setValue(temp, 4);
+	setValue((uint8_t*)(&data32), sizeof(float));
 } // setValue
 
 void BLECharacteristic::setValue(double& data64) {
-	uint8_t temp[8];
-	*((double*)temp) = data64;
-	setValue(temp, 8);
+	setValue((uint8_t*)(&data64), sizeof(double));
 } // setValue
 
 
