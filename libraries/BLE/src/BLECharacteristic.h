@@ -140,14 +140,16 @@ public:
 		ERROR_GATT,
 		ERROR_NO_CLIENT,
 		ERROR_INDICATE_TIMEOUT,
-		ERROR_INDICATE_FAILURE
+		ERROR_INDICATE_FAILURE,
+		STATUS_CONNECT,
+		STATUS_DISCONNECT
 	}Status;
 
 	virtual ~BLECharacteristicCallbacks();
 	virtual void onRead(BLECharacteristic* pCharacteristic);
 	virtual void onWrite(BLECharacteristic* pCharacteristic);
 	virtual void onNotify(BLECharacteristic* pCharacteristic);
-	virtual void onStatus(BLECharacteristic* pCharacteristic, Status s, uint32_t code);
+	virtual void onStatus(BLECharacteristic* pCharacteristic, Status s, uint32_t code = 0);
 };
 #endif /* CONFIG_BT_ENABLED */
 #endif /* COMPONENTS_CPP_UTILS_BLECHARACTERISTIC_H_ */
